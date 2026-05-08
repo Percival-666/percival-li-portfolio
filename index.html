@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Percival Li — Filmmaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --olive-deep: #2d3320;
+    --olive-mid:  #4a5239;
+    --olive-soft: #6b7355;
+    --cream:      #f3eee2;
+    --cream-dim:  #e8e1cf;
+    --paper:      #faf6ec;
+    --brass:      #b08545;
+    --brass-soft: #c89b5e;
+    --ink:        #1a1d12;
+    --rule:       rgba(45, 51, 32, 0.18);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans:  "Inter Tight", -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.4rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250, 246, 236, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    color: var(--olive-deep);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo em { color: var(--brass); font-style: italic; font-weight: 500; }
+  .nav-links {
+    display: flex; gap: 2rem;
+    list-style: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    color: var(--olive-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--brass); }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 1px;
+    background: var(--brass);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  section {
+    padding: 8rem 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--olive-deep);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-size: clamp(3.5rem, 9vw, 7rem); }
+  h2 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 3rem; }
+  h3 { font-size: 1.7rem; }
+  em { font-family: var(--serif); font-style: italic; color: var(--brass); }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    position: relative;
+  }
+  .hero-text .eyebrow { color: var(--brass); }
+  .hero-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--olive-mid);
+    border-left: 2px solid var(--brass);
+    padding-left: 1.5rem;
+    margin: 2.5rem 0 3rem;
+    max-width: 28rem;
+    line-height: 1.5;
+  }
+  .hero-cta { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.1rem 2.2rem;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--olive-deep);
+    color: var(--cream);
+    border: 1px solid var(--olive-deep);
+  }
+  .btn-primary:hover { background: var(--brass); border-color: var(--brass); }
+  .btn-ghost { color: var(--olive-mid); border: 1px solid transparent; }
+  .btn-ghost:hover { color: var(--brass); }
+
+  .hero-films {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    position: relative;
+  }
+  .hero-film {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--olive-mid);
+  }
+  .hero-film:nth-child(1) { transform: translateY(-2rem); }
+  .hero-film:nth-child(3) { transform: translateY(2rem); }
+  .hero-film img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .hero-film:hover img { transform: scale(1.05); }
+  .hero-film .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(45, 51, 32, 0.85) 0%, rgba(45, 51, 32, 0.2) 50%, transparent 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    padding: 1.2rem;
+    pointer-events: none;
+  }
+  .hero-film .label {
+    color: var(--cream);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-film .year {
+    color: var(--brass-soft);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin-top: 0.4rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 3/4;
+    background: linear-gradient(140deg, var(--olive-mid), var(--olive-deep));
+    position: relative;
+    overflow: hidden;
+  }
+  .about-portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .about-meta {
+    margin-top: 1.5rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--olive-mid);
+  }
+  .about-meta strong {
+    display: block;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-top: 0.2rem;
+    font-weight: 500;
+  }
+  .about-body p {
+    font-size: 1.05rem;
+    color: var(--olive-mid);
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+  .about-body strong {
+    color: var(--olive-deep);
+    font-weight: 500;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 4rem 0 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: var(--olive-deep);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--olive-soft);
+    margin-top: 0.6rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .skill-tag {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--olive-soft);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: var(--olive-mid);
+    transition: all 0.3s;
+  }
+  .skill-tag:hover {
+    background: var(--olive-deep);
+    color: var(--cream);
+    border-color: var(--olive-deep);
+  }
+  .languages {
+    display: flex; gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .lang-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--olive-deep);
+  }
+  .lang-level {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-top: 0.3rem;
+  }
+
+  .vision { background: var(--cream); }
+  .vision-inner { max-width: 1280px; margin: 0 auto; padding: 8rem 3rem; }
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+  .vision-card h3 {
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+  }
+  .vision-card p { color: var(--olive-mid); line-height: 1.75; }
+  .pull-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--olive-deep);
+    line-height: 1.5;
+    border-left: 3px solid var(--brass);
+    padding: 1rem 0 1rem 2rem;
+    margin: 5rem auto 0;
+    max-width: 50rem;
+  }
+
+  .goals-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+  .goal {
+    padding: 2.5rem;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .goal::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--brass);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s;
+  }
+  .goal:hover { background: var(--paper); }
+  .goal:hover::before { transform: scaleY(1); }
+  .goal-stage {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  .goal h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .goal p { color: var(--olive-mid); line-height: 1.75; }
+
+  .projects { background: var(--olive-deep); color: var(--cream); }
+  .projects-inner { max-width: 1280px; margin: 0 auto; padding: 8rem 3rem; }
+  .projects h2 { color: var(--cream); }
+  .projects .eyebrow { color: var(--brass-soft); }
+
+  .project-tabs {
+    display: flex; flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid rgba(243, 238, 226, 0.15);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none; border: none;
+    color: rgba(243, 238, 226, 0.5);
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--cream); }
+  .tab-btn.active {
+    color: var(--brass-soft);
+    border-bottom-color: var(--brass);
+  }
+
+  .project-panel { display: none; animation: fadeIn 0.5s ease; }
+  .project-panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    align-items: end;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 4rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .project-roles {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass-soft);
+    margin-bottom: 1rem;
+  }
+  .project-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: rgba(243, 238, 226, 0.7);
+    font-size: 0.95rem;
+  }
+  .watch-btn {
+    background: var(--brass);
+    color: var(--olive-deep);
+    border: none;
+    padding: 1.1rem 2.2rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 500;
+    align-self: end;
+    justify-self: end;
+  }
+  .watch-btn:hover {
+    background: var(--cream);
+    transform: translateY(-2px);
+  }
+  .watch-btn .play { font-size: 0.9rem; }
+  .watch-btn.disabled {
+    background: rgba(243, 238, 226, 0.1);
+    color: rgba(243, 238, 226, 0.4);
+    cursor: not-allowed;
+  }
+  .watch-btn.disabled:hover { transform: none; }
+  .no-video-tag {
+    color: rgba(243, 238, 226, 0.4);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    align-self: end;
+    justify-self: end;
+  }
+  .project-desc {
+    font-size: 1.05rem;
+    color: rgba(243, 238, 226, 0.85);
+    line-height: 1.75;
+    max-width: 50rem;
+    margin-bottom: 4rem;
+  }
+  .project-stills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .still {
+    aspect-ratio: 4/3;
+    background: var(--olive-mid);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s;
+  }
+  .still:hover { transform: scale(1.02); }
+  .still img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .still:hover img { transform: scale(1.05); }
+  .still .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(45, 51, 32, 0.9), transparent);
+    color: var(--cream);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .still:hover .caption { opacity: 1; }
+
+  .work-list { margin-top: 3rem; }
+  .work-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+    transition: padding-left 0.3s;
+  }
+  .work-item:last-child { border-bottom: 1px solid var(--rule); }
+  .work-item:hover { padding-left: 1rem; }
+  .work-year {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--brass);
+  }
+  .work-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--olive-deep);
+    margin-bottom: 0.6rem;
+  }
+  .work-roles {
+    display: flex; flex-wrap: wrap; gap: 1.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.8rem;
+  }
+  .work-desc {
+    color: var(--olive-mid);
+    line-height: 1.7;
+    max-width: 45rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  .skill-group h3 {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-family: var(--sans);
+    font-weight: 500;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.2rem;
+  }
+  .skill-group ul { list-style: none; }
+  .skill-group li {
+    padding: 0.6rem 0;
+    color: var(--olive-mid);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(45, 51, 32, 0.06);
+  }
+  .skill-group li:last-child { border-bottom: none; }
+
+  .contact { background: var(--olive-deep); color: var(--cream); }
+  .contact-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8rem 3rem;
+    text-align: center;
+  }
+  .contact h2 {
+    color: var(--cream);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin-bottom: 1.5rem;
+  }
+  .contact h2 em { color: var(--brass-soft); }
+  .contact p {
+    color: rgba(243, 238, 226, 0.7);
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .contact-info {
+    display: flex; justify-content: center; gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+  .contact-item { text-align: center; }
+  .contact-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass-soft);
+    margin-bottom: 0.6rem;
+  }
+  .contact-value {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .contact-value:hover { border-color: var(--brass); }
+
+  footer {
+    background: var(--ink);
+    color: rgba(243, 238, 226, 0.4);
+    text-align: center;
+    padding: 3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+  footer a { color: var(--brass-soft); text-decoration: none; margin: 0 0.6rem; }
+  footer a:hover { color: var(--brass); }
+
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26, 29, 18, 0.95);
+    z-index: 2000;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-inner {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    background: black;
+  }
+  .lightbox iframe { width: 100%; height: 100%; border: none; }
+  .lightbox-close {
+    position: absolute;
+    top: -3rem; right: 0;
+    background: none;
+    border: 1px solid var(--brass);
+    color: var(--brass);
+    width: 40px; height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .lightbox-close:hover {
+    background: var(--brass);
+    color: var(--olive-deep);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .vision-inner, .projects-inner, .contact-inner { padding: 5rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding-top: 8rem; gap: 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .vision-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .project-header { grid-template-columns: 1fr; gap: 2rem; }
+    .watch-btn, .no-video-tag { justify-self: start; }
+    .project-title { font-size: 2.5rem; }
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .languages { gap: 1.5rem; flex-wrap: wrap; }
+    .contact-info { gap: 1.5rem; flex-direction: column; }
+    .still .caption { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Percival <em>Li</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Director &amp; Producer · Chicago, IL</div>
+    <h1>Percival<br><em>Li</em></h1>
+    <p class="hero-quote">"Visually driven films that bridge cultural perspectives — from concept to final frame."</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-ghost">Work With Me</a>
+      <a href="#projects" class="btn btn-primary">View My Films</a>
+    </div>
+  </div>
+  <div class="hero-films">
+    <div class="hero-film">
+      <img src="images/quiet-02.jpg" alt="The Quiet Between Us">
+      <div class="overlay"><div class="label">The Quiet Between Us</div><div class="year">2025</div></div>
+    </div>
+    <div class="hero-film">
+      <img src="images/conspiracy-09.jpg" alt="Conspiracy">
+      <div class="overlay"><div class="label">Conspiracy</div><div class="year">2021</div></div>
+    </div>
+    <div class="hero-film">
+      <img src="images/cycle-04.jpg" alt="The Cycle">
+      <div class="overlay"><div class="label">The Cycle</div><div class="year">2026</div></div>
+    </div>
+    <div class="hero-film">
+      <img src="images/doe-01.jpg" alt="D.O.E">
+      <div class="overlay"><div class="label">D.O.E</div><div class="year">2022</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="about-portrait">
+        <img src="images/conspiracy-09.jpg" alt="Percival Li on set">
+      </div>
+      <div class="about-meta">
+        Percival Li
+        <strong>Columbia College Chicago · BFA 2026</strong>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Directing</span>
+        <span class="skill-tag">Producing</span>
+        <span class="skill-tag">Screenwriting</span>
+        <span class="skill-tag">Cinematography</span>
+        <span class="skill-tag">Editing</span>
+        <span class="skill-tag">1st AC</span>
+        <span class="skill-tag">Grip</span>
+        <span class="skill-tag">Lighting</span>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="eyebrow">About</div>
+      <h2>A filmmaker <em>rooted in both worlds</em></h2>
+      <p>Percival Li is a China-born filmmaker and Film &amp; Television student at <strong>Columbia College Chicago</strong>, graduating in 2026. His training spans directing, producing, cinematography, lighting, editing, and screenwriting — with hands-on experience across professional camera systems, lighting setups, and industry-standard post-production software.</p>
+      <p>His most ambitious project, <em>Conspiracy</em> — a short film he directed, wrote, and produced — stands out for its strong visual identity and narrative execution, leading a crew of 50. As producer on <em>The Cycle</em>, he managed full production logistics and cross-departmental coordination. Most recently, he helmed <em>The Quiet Between Us</em> as director, producer, writer, and editor — from development through post.</p>
+      <p>Growing up in <strong>Shenzhen, China</strong> and studying filmmaking in the United States has shaped a perspective that blends patience and visual atmosphere with structure and narrative clarity — resulting in films that feel both culturally grounded and broadly resonant.</p>
+      <div class="languages">
+        <div><div class="lang-name">English</div><div class="lang-level">Fluent</div></div>
+        <div><div class="lang-name">Mandarin</div><div class="lang-level">Native</div></div>
+        <div><div class="lang-name">Cantonese</div><div class="lang-level">Fluent</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div><div class="stat-num">5+</div><div class="stat-label">Years of Experience</div></div>
+    <div><div class="stat-num">8+</div><div class="stat-label">Productions</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
+    <div><div class="stat-num">50</div><div class="stat-label">Crew Led</div></div>
+  </div>
+</section>
+
+<section id="vision" class="vision">
+  <div class="vision-inner">
+    <div class="eyebrow">Creative Vision &amp; Theme</div>
+    <h2>Light, space, <em>and what lies between</em></h2>
+    <div class="vision-grid">
+      <div class="vision-card">
+        <h3>Visual Storytelling</h3>
+        <p>Rather than relying on dialogue alone, the creative approach emphasizes atmosphere, rhythm, and composition to communicate feeling. The way light falls across a room, the silence between characters, the pacing of movement within a scene — these details often reveal more about human experience than words alone.</p>
+      </div>
+      <div class="vision-card">
+        <h3>Cross-Cultural Perspective</h3>
+        <p>Growing up in Shenzhen and studying in Chicago has shaped a lens that blends Chinese storytelling traditions — observation, patience, atmosphere — with American filmmaking's focus on structure and narrative momentum. The result is cinema that is both visually thoughtful and emotionally direct.</p>
+      </div>
+    </div>
+    <p class="pull-quote">"Small details — the way light falls across a room, the silence between characters — can reveal more about human experience than words alone."</p>
+  </div>
+</section>
+
+<section id="goals">
+  <div class="eyebrow">Professional Goals</div>
+  <h2>Where I'm <em>headed</em></h2>
+  <div class="goals-list">
+    <div class="goal">
+      <div class="goal-stage">Short-term · Post-Graduation</div>
+      <h3>Join a professional production team</h3>
+      <p>After graduation, the immediate goal is to work within an established film or media production company — gaining real-world experience in lighting, camera operation, scheduling, budgeting, and team coordination. Learning from experienced professionals and building industry connections is the foundation of a lasting career.</p>
+    </div>
+    <div class="goal">
+      <div class="goal-stage">Mid-term · Growing Craft</div>
+      <h3>Develop as a storyteller</h3>
+      <p>Beyond technical skills, the deeper goal is to continue evolving as a storyteller. Work on productions across different departments — directing, producing, camera — has built an understanding of how each role shapes the final result. That cross-disciplinary knowledge directly informs stronger, more intentional filmmaking.</p>
+    </div>
+    <div class="goal">
+      <div class="goal-stage">Long-term · The Bigger Picture</div>
+      <h3>Establish an independent film studio</h3>
+      <p>The long-term vision is to found an independent production company — creating projects that combine strong visual storytelling with meaningful themes. As someone who grew up in Shenzhen and studied in Chicago, the goal is to produce films that reflect perspectives from different cultures. Cinema has the power to connect people across backgrounds, and this work aims to contribute to that exchange. The studio would be a space where craft, collaboration, and cultural honesty come first.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="projects-inner">
+    <div class="eyebrow">Film Work</div>
+    <h2>Projects</h2>
+    <div class="project-tabs">
+      <button class="tab-btn active" data-tab="conspiracy">Conspiracy</button>
+      <button class="tab-btn" data-tab="doe">D.O.E</button>
+      <button class="tab-btn" data-tab="surge">The Surge</button>
+      <button class="tab-btn" data-tab="deified">Deified</button>
+      <button class="tab-btn" data-tab="quiet">The Quiet Between Us</button>
+      <button class="tab-btn" data-tab="cycle">The Cycle</button>
+    </div>
+
+    <!-- CONSPIRACY -->
+    <div class="project-panel active" id="panel-conspiracy">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">Conspiracy</h3>
+          <div class="project-roles"><span>Director</span><span>Screenwriter</span><span>Producer</span></div>
+          <div class="project-meta">Shenzhen, China · 2021 · Crew of 50</div>
+        </div>
+        <button class="watch-btn" data-video="Ddb97P0OL5I"><span class="play">▶</span> Watch Film</button>
+      </div>
+      <p class="project-desc">Developed and executed an original narrative from concept to final production. Led casting, pre-production planning, and on-set direction for a crew of 50. Screened in an academic showcase.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/conspiracy-01.jpg" alt=""><div class="caption">Production wrap — full crew</div></div>
+        <div class="still"><img src="images/conspiracy-09.jpg" alt=""><div class="caption">Behind the scenes — directing on set</div></div>
+        <div class="still"><img src="images/conspiracy-02.jpg" alt=""><div class="caption">Sony monitor · 25fps · ISO 160</div></div>
+        <div class="still"><img src="images/conspiracy-05.jpg" alt=""><div class="caption">3.4K RAW · Shenzhen skyline at dusk</div></div>
+        <div class="still"><img src="images/conspiracy-10.jpg" alt=""><div class="caption">Camera crew on location</div></div>
+        <div class="still"><img src="images/conspiracy-08.jpg" alt=""><div class="caption">Wrap day — clapperboard</div></div>
+      </div>
+    </div>
+
+    <!-- D.O.E -->
+    <div class="project-panel" id="panel-doe">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">D.O.E</h3>
+          <div class="project-roles"><span>First Assistant Camera</span></div>
+          <div class="project-meta">Chicago, IL · 2022 · Shot on 35mm Film</div>
+        </div>
+        <button class="watch-btn" data-video="mkqlwKpiGi4"><span class="play">▶</span> Watch Film</button>
+      </div>
+      <p class="project-desc">Executed focus pulling and lens management on a film production. Maintained precision in collaboration with the cinematographer. Demonstrates commitment to analog craft and technical mastery.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/doe-01.jpg" alt=""><div class="caption">Set design — sculptural elements</div></div>
+        <div class="still"><img src="images/doe-02.jpg" alt=""><div class="caption">Production design detail</div></div>
+        <div class="still"><img src="images/doe-03.jpg" alt=""><div class="caption">On-set portrait</div></div>
+        <div class="still"><img src="images/doe-04.jpg" alt=""><div class="caption">Production setup</div></div>
+      </div>
+    </div>
+
+    <!-- THE SURGE -->
+    <div class="project-panel" id="panel-surge">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">The Surge</h3>
+          <div class="project-roles"><span>Second Assistant Camera</span></div>
+          <div class="project-meta">Chicago, IL · 2022</div>
+        </div>
+        <span class="no-video-tag">— Reel available on request</span>
+      </div>
+      <p class="project-desc">Supported camera operations including slating, media management, and prep. Assisted 1st AC and maintained efficient on-set workflow throughout production.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/surge-01.jpg" alt=""><div class="caption">Rain shoot — umbrella detail</div></div>
+        <div class="still"><img src="images/surge-02.jpg" alt=""><div class="caption">On-set monitoring</div></div>
+        <div class="still"><img src="images/surge-03.jpg" alt=""><div class="caption">Chicago streets — night exterior</div></div>
+        <div class="still"><img src="images/surge-04.jpg" alt=""><div class="caption">Crew at work</div></div>
+        <div class="still"><img src="images/surge-05.jpg" alt=""><div class="caption">Shooting in the rain</div></div>
+      </div>
+    </div>
+
+    <!-- DEIFIED -->
+    <div class="project-panel" id="panel-deified">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">Deified</h3>
+          <div class="project-roles"><span>First Key Grip</span><span>Best Boy</span></div>
+          <div class="project-meta">Chicago, IL · 2023</div>
+        </div>
+        <span class="no-video-tag">— Reel available on request</span>
+      </div>
+      <p class="project-desc">Supported grip and lighting operations including rigging and equipment setup. Collaborated with the Gaffer to ensure safe and efficient on-set workflow.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/deified-01.jpg" alt=""><div class="caption">Production crew</div></div>
+        <div class="still"><img src="images/deified-02.jpg" alt=""><div class="caption">Rigging setup</div></div>
+        <div class="still"><img src="images/deified-03.jpg" alt=""><div class="caption">Reviewing footage on set</div></div>
+        <div class="still"><img src="images/deified-04.jpg" alt=""><div class="caption">Wrap day — full team</div></div>
+        <div class="still"><img src="images/deified-05.jpg" alt=""><div class="caption">Camera operation</div></div>
+      </div>
+    </div>
+
+    <!-- THE QUIET BETWEEN US -->
+    <div class="project-panel" id="panel-quiet">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">The Quiet Between Us</h3>
+          <div class="project-roles"><span>Director</span><span>Producer</span><span>Writer</span><span>Editor</span></div>
+          <div class="project-meta">Chicago, IL · 2025 · Full pipeline — development through post</div>
+        </div>
+        <button class="watch-btn" data-video="2w5tyG60cME"><span class="play">▶</span> Watch Film</button>
+      </div>
+      <p class="project-desc">Managed the full production pipeline from development through post-production. Oversaw scheduling, resource allocation, and on-set execution. Directed performance and shaped narrative pacing through editing.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/quiet-01.jpg" alt=""><div class="caption">Cast &amp; crew — production wrap</div></div>
+        <div class="still"><img src="images/quiet-04.jpg" alt=""><div class="caption">Monitor preview — production design</div></div>
+        <div class="still"><img src="images/quiet-05.jpg" alt=""><div class="caption">Set lighting — dining scene</div></div>
+        <div class="still"><img src="images/quiet-06.jpg" alt=""><div class="caption">Studio setup — overhead lighting</div></div>
+        <div class="still"><img src="images/quiet-02.jpg" alt=""><div class="caption">Location scout — exterior</div></div>
+        <div class="still"><img src="images/quiet-03.jpg" alt=""><div class="caption">Cast &amp; crew on the move</div></div>
+      </div>
+    </div>
+
+    <!-- THE CYCLE -->
+    <div class="project-panel" id="panel-cycle">
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">The Cycle</h3>
+          <div class="project-roles"><span>Producer</span><span>Post-Production</span></div>
+          <div class="project-meta">Chicago, IL · 2026 · Currently in post-production</div>
+        </div>
+        <button class="watch-btn disabled"><span class="play">●</span> Coming Soon</button>
+      </div>
+      <p class="project-desc">Managed scheduling, budgeting, and full production logistics across departments. Production wrapped in early 2026 — currently awaiting final cut.</p>
+      <div class="project-stills">
+        <div class="still"><img src="images/cycle-01.jpg" alt=""><div class="caption">Studio interior — lighting setup</div></div>
+        <div class="still"><img src="images/cycle-02.jpg" alt=""><div class="caption">Cast &amp; crew on location</div></div>
+        <div class="still"><img src="images/cycle-03.jpg" alt=""><div class="caption">Production transit</div></div>
+        <div class="still"><img src="images/cycle-04.jpg" alt=""><div class="caption">Monitor preview — interior shot</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="eyebrow">Selected Work</div>
+  <h2>Films &amp; <em>productions</em></h2>
+  <div class="work-list">
+    <div class="work-item">
+      <div class="work-year">2026</div>
+      <div>
+        <div class="work-title">The Cycle</div>
+        <div class="work-roles"><span>Producer</span></div>
+        <p class="work-desc">Overseeing scheduling, budgeting, and full production logistics across departments. Coordinating communication between creative and technical teams to ensure efficient workflow.</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-year">2025</div>
+      <div>
+        <div class="work-title">The Quiet Between Us</div>
+        <div class="work-roles"><span>Director</span><span>Producer</span><span>Writer</span><span>Editor</span></div>
+        <p class="work-desc">Managed full production pipeline from development through post-production. Oversaw scheduling, resource allocation, and on-set execution. Directed performance and shaped narrative pacing through editing.</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-year">2023</div>
+      <div>
+        <div class="work-title">Deified</div>
+        <div class="work-roles"><span>First Key Grip</span><span>Best Boy</span></div>
+        <p class="work-desc">Supported grip and lighting operations including rigging and equipment setup. Collaborated with Gaffer to ensure safe and efficient on-set workflow.</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-year">2022</div>
+      <div>
+        <div class="work-title">The Surge</div>
+        <div class="work-roles"><span>Second Assistant Camera</span></div>
+        <p class="work-desc">Supported camera operations including slating, media management, and prep. Assisted 1st AC and maintained efficient on-set workflow.</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-year">2022</div>
+      <div>
+        <div class="work-title">D.O.E — Shot on Film</div>
+        <div class="work-roles"><span>First Assistant Camera</span></div>
+        <p class="work-desc">Executed focus pulling and lens management on a film production. Maintained precision in collaboration with the cinematographer.</p>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-year">2021</div>
+      <div>
+        <div class="work-title">Conspiracy</div>
+        <div class="work-roles"><span>Director</span><span>Screenwriter</span><span>Producer</span></div>
+        <p class="work-desc">Developed and executed an original narrative from concept to final production in Shenzhen, China. Led casting, pre-production planning, and on-set direction for a crew of 50. Screened in an academic showcase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="eyebrow">Craft &amp; Tools</div>
+  <h2>Technical &amp; <em>creative skills</em></h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Production</h3>
+      <ul>
+        <li>Scheduling &amp; Budgeting</li>
+        <li>Crew Leadership (50+)</li>
+        <li>On-Set Operations</li>
+        <li>Call Sheet Execution</li>
+        <li>Cross-Department Comm</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Creative</h3>
+      <ul>
+        <li>Directing &amp; Performance</li>
+        <li>Story Development</li>
+        <li>Screenwriting</li>
+        <li>Narrative Editing</li>
+        <li>Pacing</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Camera Systems</h3>
+      <ul>
+        <li>ARRI</li>
+        <li>Blackmagic</li>
+        <li>Canon</li>
+        <li>Sony</li>
+        <li>Film (35mm / Analog)</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Post-Production</h3>
+      <ul>
+        <li>Adobe Premiere Pro</li>
+        <li>Adobe After Effects</li>
+        <li>DaVinci Resolve</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>On-Set Technical</h3>
+      <ul>
+        <li>Focus Pulling (1st AC)</li>
+        <li>Grip &amp; Rigging</li>
+        <li>Lighting Equipment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="eyebrow" style="color: var(--brass-soft);">Let's Connect</div>
+    <h2>Ready to make<br>something <em>real?</em></h2>
+    <p>Open to production assistant roles, directing and producing collaborations, and independent film projects. If it's a story worth telling — let's talk.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <a href="mailto:Xuanyili6@hotmail.com" class="contact-value">Xuanyili6@hotmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <a href="tel:+13127212691" class="contact-value">(312) 721-2691</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Location</div>
+        <span class="contact-value">Chicago, IL</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/percival-li-498186400" target="_blank" rel="noopener" class="contact-value">percival-li</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Percival Li · Filmmaker · Columbia College Chicago · BFA Film &amp; Television
+  <br><br>
+  <a href="https://www.linkedin.com/in/percival-li-498186400" target="_blank">LinkedIn</a> ·
+  <a href="#">WeChat: PercivalLi0302</a>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <iframe id="lightboxFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.project-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+      window.scrollTo({ top: document.getElementById('projects').offsetTop - 50, behavior: 'smooth' });
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const frame = document.getElementById('lightboxFrame');
+  const closeBtn = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.watch-btn').forEach(btn => {
+    if (btn.classList.contains('disabled')) return;
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.video;
+      if (!id) return;
+      frame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+  });
+</script>
+
+</body>
+</html>
